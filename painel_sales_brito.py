@@ -148,24 +148,44 @@ Autoavaliação | Planejamento
                 st.text_area("🗂️ Cronograma Editável", value=conteudo, height=400)
 
     elif aba == "💰 Investimentos":
-        st.subheader("💰 Controle de Investimentos")
-        st.markdown("**Meta:** Comprar uma moto 🏍️")
-        st.markdown("**Corretora:** Rico")
-        st.markdown("**Plataforma:** App ou PC")
+        st.subheader("💰 Controle de Investimentos Inteligente")
+        st.markdown("**Meta Pessoal:** Comprar uma moto até Dez/2025 🏍️")
+        st.markdown("**Corretora:** Rico — Plataforma: App / PC")
 
-        st.markdown("#### 📊 Acesso à Planilha:")
-        link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
-        st.markdown(f"📌 [Abrir planilha de investimentos]({link_planilha})")
-
-        st.markdown("#### 💼 Tabela de Investimentos")
+        st.markdown("### 📊 Tabela de Investimentos Real")
         dados = {
-            "Data": ["10/04/2025", "15/04/2025"],
-            "Ativo": ["Tesouro Selic", "Ações - ITSA4"],
-            "Valor (R$)": [200.0, 150.0],
-            "Objetivo": ["Reserva de Emergência", "Dividendos"]
+            "Data": [datetime.today().strftime("%d/%m/%Y")] * 4,
+            "Tipo": ["Renda Fixa", "Renda Variável", "Fundo Imobiliário", "Cripto"],
+            "Ativo": ["Tesouro Selic", "ITSA4", "MXRF11", "Bitcoin"],
+            "Valor Investido (R$)": [200.0, 150.0, 100.0, 50.0],
+            "Rentabilidade Esperada (%)": [0.7, 1.5, 1.1, 5.0],
+            "Objetivo": [
+                "Reserva de Emergência",
+                "Dividendos mensais",
+                "Renda passiva FIIs",
+                "Crescimento agressivo"
+            ],
+            "Meta do Ativo": [
+                "R$ 3.000",
+                "R$ 5.000",
+                "R$ 2.000",
+                "R$ 1.000"
+            ]
         }
         df = pd.DataFrame(dados)
-        st.dataframe(df)
+        st.dataframe(df, use_container_width=True)
+
+        st.markdown("### 🧮 Sugestões Inteligentes")
+        st.info("""
+        • Comece com Tesouro Selic até acumular R$ 1.000 de reserva.  
+        • Use ITSA4 ou BBAS3 para dividendos consistentes.  
+        • Invista R$ 50 por mês no FII MXRF11.  
+        • Use Bitcoin apenas com no máximo 5% do patrimônio.  
+        """)
+
+        st.markdown("### 📎 Acesso à sua Planilha:")
+        link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
+        st.markdown(f"🔗 [Clique aqui para abrir sua planilha no Google Sheets]({link_planilha})")
 
 # ----------------------------
 # Execução
