@@ -40,6 +40,9 @@ st.markdown("""
 def login():
     st.title("🪖 Painel Tático @sales_brito")
     st.subheader("🔒 Acesso Restrito")
+    st.markdown(
+        "> "Seja mais forte do que sua melhor desculpa. Hora de agir como um guerreiro!"
+    )
     user = st.text_input("Usuário")
     passwd = st.text_input("Senha", type="password")
     if st.button("Entrar"):
