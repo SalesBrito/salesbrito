@@ -50,7 +50,7 @@ def login():
 # ----------------------------
 def dashboard():
     st.sidebar.title("🎖 Missões")
-    aba = st.sidebar.radio("Escolha sua operação:", ["📓 Anotações", "📅 Agenda", "📁 Uploads"])
+    aba = st.sidebar.radio("Escolha sua operação:", ["📓 Anotações", "📅 Agenda", "📁 Uploads", "📚 Estudos (PMGO)", "💰 Investimentos"])
     st.title(f"🎯 Painel do Operacional: @sales_brito")
 
     if aba == "📓 Anotações":
@@ -85,9 +85,46 @@ def dashboard():
         st.subheader("📁 Upload de Arquivos")
         uploaded = st.file_uploader("Envie seus arquivos táticos:")
         if uploaded:
+            os.makedirs("uploads", exist_ok=True)
             with open(f"uploads/{uploaded.name}", "wb") as f:
                 f.write(uploaded.read())
             st.success(f"Arquivo '{uploaded.name}' salvo com sucesso!")
+
+    elif aba == "📚 Estudos (PMGO)":
+        st.subheader("📚 Missão PMGO: Estudo Diário")
+        st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
+        st.markdown("**Horário Ideal de Estudo:** Tarde")
+
+        st.markdown("#### 🧭 Cronograma de Estudos")
+        st.markdown("- Segunda: Direito Penal\n- Terça: Legislação PMGO\n- Quarta: CTB\n- Quinta: Direitos Humanos\n- Sexta: Simulados e Revisões\n- Sábado: Flashcards e Redação\n- Domingo: Livre / Reforço")
+
+        st.markdown("#### 📌 Metas da Semana")
+        metas = ["Finalizar aula de Legislação", "Revisar Penal com flashcards", "Fazer 30 questões de CTB", "Simulado Completo", "Resumo de Direitos Humanos"]
+        for meta in metas:
+            st.checkbox(meta)
+
+        st.markdown("#### 🧠 Técnicas de Estudo")
+        st.markdown("- Pomodoro (25/5)\n- Mapas Mentais\n- Flashcards (Anki)\n- Revisão Espaçada\n- Questões diárias (QConcursos / Gran)")
+
+        st.markdown("#### 🔗 Plataformas Utilizadas")
+        st.markdown("- [Gran Cursos](https://www.grancursosonline.com.br)\n- [QConcursos](https://www.qconcursos.com)\n- [AnkiWeb](https://apps.ankiweb.net/)")
+
+        st.markdown("#### 📂 Materiais e Revisões")
+        link_drive = "https://drive.google.com/drive/folders/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
+        st.markdown(f"📎 [Acessar pasta de materiais no Google Drive]({link_drive})")
+
+        st.markdown("#### 🧾 Simulados e Revisões Prontas")
+        st.markdown("- 📄 [Simulado PMGO - PDF](#)\n- 📄 [Resumo CTB - PDF](#)\n- 📄 [Flashcards Direitos Humanos - PDF](#)")
+
+    elif aba == "💰 Investimentos":
+        st.subheader("💰 Controle de Investimentos")
+        st.markdown("**Meta:** Comprar uma moto 🏍️")
+        st.markdown("**Corretora:** Rico")
+        st.markdown("**Plataforma:** App ou PC")
+
+        st.markdown("#### 📊 Planilha de Controle:")
+        link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
+        st.markdown(f"📎 [Abrir planilha de investimentos]({link_planilha})")
 
 # ----------------------------
 # Execução
