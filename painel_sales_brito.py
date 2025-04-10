@@ -1,4 +1,4 @@
-# Painel @sales_brito - Estilo Militar (Versão Streamlit)
+# Painel @sales_brito - Estilo Militar Moderno (Versão Streamlit)
 # Adaptado para rodar no Streamlit Cloud
 
 import streamlit as st
@@ -12,25 +12,24 @@ st.set_page_config(page_title="Painel @sales_brito", layout="wide")
 st.markdown("""
     <style>
     .main {
-        background-color: #1a1f1c;
-        color: #c9c9c9;
-        font-family: 'Courier New', monospace;
-        background-image: url('https://www.transparenttextures.com/patterns/camo-light.png');
+        background-color: #f0f2f6;
+        color: #1a1a1a;
+        font-family: 'Segoe UI', sans-serif;
     }
     .stTextInput>div>div>input {
-        background-color: #333;
-        color: #fff;
+        background-color: #ffffff;
+        color: #000000;
     }
     .stButton>button {
-        background-color: #28a745;
+        background-color: #004d40;
         color: white;
         font-weight: bold;
         border-radius: 8px;
     }
     .stTextArea textarea {
-        background-color: #222;
-        color: #0f0;
-        font-family: 'Courier New', monospace;
+        background-color: #ffffff;
+        color: #000000;
+        font-family: 'Segoe UI', sans-serif;
     }
     </style>
 """, unsafe_allow_html=True)
