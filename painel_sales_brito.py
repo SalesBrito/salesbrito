@@ -100,21 +100,29 @@ def dashboard():
         st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
         st.markdown("**Horário Ideal de Estudo:** Tarde")
 
-        st.markdown("#### 🧭 Cronograma Semanal Atualizável")
+        st.markdown("#### 🧭 Cronograma Semanal por Matéria e Turno")
         dias_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
         turnos = ["Manhã", "Tarde", "Noite"]
+        materias = ["Direito Penal", "CTB", "Legislação PMGO", "Direitos Humanos", "Português", "Redação"]
         cronograma = {}
 
         for dia in dias_semana:
             with st.expander(f"📅 {dia}"):
                 cronograma[dia] = {}
                 for turno in turnos:
-                    assunto = st.text_input(f"{turno} - Assunto", key=f"{dia}_{turno}")
-                    cronograma[dia][turno] = assunto
+                    cronograma[dia][turno] = {}
+                    st.markdown(f"**{turno}:**")
+                    for materia in materias:
+                        assunto = st.text_input(f"{materia}", key=f"{dia}_{turno}_{materia}")
+                        cronograma[dia][turno][materia] = assunto
 
-        st.markdown("#### 📆 Cronograma Mensal (Resumo)")
+        st.markdown("#### 📆 Resumo do Cronograma da Semana")
         for dia in dias_semana:
-            st.markdown(f"**{dia}**: " + ", ".join([f"{turno}: {cronograma[dia][turno]}" for turno in turnos if cronograma[dia][turno]]))
+            st.markdown(f"**{dia}**:")
+            for turno in turnos:
+                materias_assuntos = [f"{materia}: {cronograma[dia][turno][materia]}" for materia in materias if cronograma[dia][turno][materia]]
+                if materias_assuntos:
+                    st.markdown(f"- {turno}: " + ", ".join(materias_assuntos))
 
         st.markdown("#### 📌 Metas da Semana")
         metas = [
