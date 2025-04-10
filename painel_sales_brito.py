@@ -95,19 +95,35 @@ def dashboard():
         st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
         st.markdown("**Horário Ideal de Estudo:** Tarde")
 
-        st.markdown("#### 🧭 Cronograma de Estudos")
-        st.markdown("- Segunda: Direito Penal\n- Terça: Legislação PMGO\n- Quarta: CTB\n- Quinta: Direitos Humanos\n- Sexta: Simulados e Revisões\n- Sábado: Flashcards e Redação\n- Domingo: Livre / Reforço")
+        st.markdown("#### 🧭 Cronograma de Estudos Personalizável")
+        dias_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
+        cronograma = {}
+        for dia in dias_semana:
+            assunto = st.text_area(f"{dia} - Disciplinas/Assuntos:", key=f"cronograma_{dia}")
+            cronograma[dia] = assunto
 
         st.markdown("#### 📌 Metas da Semana")
-        metas = ["Finalizar aula de Legislação", "Revisar Penal com flashcards", "Fazer 30 questões de CTB", "Simulado Completo", "Resumo de Direitos Humanos"]
+        metas = [
+            "Finalizar aula de Legislação",
+            "Revisar Penal com flashcards",
+            "Fazer 30 questões de CTB",
+            "Simulado Completo",
+            "Resumo de Direitos Humanos"
+        ]
         for meta in metas:
             st.checkbox(meta)
+
+        st.markdown("#### ⏱️ Cronômetro Pomodoro")
+        st.markdown("Use um timer externo ou [Pomofocus](https://pomofocus.io/) para manter o foco: 25 min foco + 5 min pausa")
 
         st.markdown("#### 🧠 Técnicas de Estudo")
         st.markdown("- Pomodoro (25/5)\n- Mapas Mentais\n- Flashcards (Anki)\n- Revisão Espaçada\n- Questões diárias (QConcursos / Gran)")
 
+        st.markdown("#### 🔁 Revisão Programada")
+        st.markdown("- Dia 1 após o estudo\n- Dia 7\n- Dia 30")
+
         st.markdown("#### 🔗 Plataformas Utilizadas")
-        st.markdown("- [Gran Cursos](https://www.grancursosonline.com.br)\n- [QConcursos](https://www.qconcursos.com)\n- [AnkiWeb](https://apps.ankiweb.net/)")
+        st.markdown("- [Gran Cursos](https://www.grancursosonline.com.br)\n- [QConcursos](https://www.qconcursos.com)\n- [AnkiWeb](https://apps.ankiweb.net/)\n- [Google Drive](https://drive.google.com/drive/folders/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q)")
 
         st.markdown("#### 📂 Materiais e Revisões")
         link_drive = "https://drive.google.com/drive/folders/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
