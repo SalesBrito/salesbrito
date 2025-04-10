@@ -100,14 +100,21 @@ def dashboard():
         st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
         st.markdown("**Horário Ideal de Estudo:** Tarde")
 
-        st.markdown("#### 🧭 Cronograma de Estudos Personalizável")
+        st.markdown("#### 🧭 Cronograma Semanal Atualizável")
         dias_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
         turnos = ["Manhã", "Tarde", "Noite"]
+        cronograma = {}
 
         for dia in dias_semana:
             with st.expander(f"📅 {dia}"):
+                cronograma[dia] = {}
                 for turno in turnos:
                     assunto = st.text_input(f"{turno} - Assunto", key=f"{dia}_{turno}")
+                    cronograma[dia][turno] = assunto
+
+        st.markdown("#### 📆 Cronograma Mensal (Resumo)")
+        for dia in dias_semana:
+            st.markdown(f"**{dia}**: " + ", ".join([f"{turno}: {cronograma[dia][turno]}" for turno in turnos if cronograma[dia][turno]]))
 
         st.markdown("#### 📌 Metas da Semana")
         metas = [
