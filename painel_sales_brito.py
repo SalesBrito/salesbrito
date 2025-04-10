@@ -27,6 +27,11 @@ st.markdown("""
         font-weight: bold;
         border-radius: 8px;
     }
+    .stTextArea textarea {
+        background-color: #222;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -97,10 +102,12 @@ def dashboard():
 
         st.markdown("#### 🧭 Cronograma de Estudos Personalizável")
         dias_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-        cronograma = {}
+        turnos = ["Manhã", "Tarde", "Noite"]
+
         for dia in dias_semana:
-            assunto = st.text_area(f"{dia} - Disciplinas/Assuntos:", key=f"cronograma_{dia}")
-            cronograma[dia] = assunto
+            with st.expander(f"📅 {dia}"):
+                for turno in turnos:
+                    assunto = st.text_input(f"{turno} - Assunto", key=f"{dia}_{turno}")
 
         st.markdown("#### 📌 Metas da Semana")
         metas = [
@@ -112,9 +119,6 @@ def dashboard():
         ]
         for meta in metas:
             st.checkbox(meta)
-
-        st.markdown("#### ⏱️ Cronômetro Pomodoro")
-        st.markdown("Use um timer externo ou [Pomofocus](https://pomofocus.io/) para manter o foco: 25 min foco + 5 min pausa")
 
         st.markdown("#### 🧠 Técnicas de Estudo")
         st.markdown("- Pomodoro (25/5)\n- Mapas Mentais\n- Flashcards (Anki)\n- Revisão Espaçada\n- Questões diárias (QConcursos / Gran)")
