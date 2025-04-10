@@ -4,6 +4,7 @@
 import streamlit as st
 from datetime import datetime
 import os
+import pandas as pd
 
 # ----------------------------
 # Configuração Inicial
@@ -155,6 +156,16 @@ Autoavaliação | Planejamento
         st.markdown("#### 📊 Acesso à Planilha:")
         link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
         st.markdown(f"📌 [Abrir planilha de investimentos]({link_planilha})")
+
+        st.markdown("#### 💼 Tabela de Investimentos")
+        dados = {
+            "Data": ["10/04/2025", "15/04/2025"],
+            "Ativo": ["Tesouro Selic", "Ações - ITSA4"],
+            "Valor (R$)": [200.0, 150.0],
+            "Objetivo": ["Reserva de Emergência", "Dividendos"]
+        }
+        df = pd.DataFrame(dados)
+        st.dataframe(df)
 
 # ----------------------------
 # Execução
