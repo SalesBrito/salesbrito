@@ -55,7 +55,7 @@ def login():
 # ----------------------------
 def dashboard():
     st.sidebar.title("🎖 Missões")
-    aba = st.sidebar.radio("Escolha sua operação:", ["📓 Anotações", "📅 Agenda", "📁 Uploads", "📚 Estudos (PMGO)", "💰 Investimentos"])
+    aba = st.sidebar.radio("Escolha sua operação:", ["📓 Anotações", "🗕 Agenda", "📁 Uploads", "📚 Estudos (PMGO)", "💰 Investimentos"])
     st.title(f"🎯 Painel do Operacional: @sales_brito")
 
     if aba == "📓 Anotações":
@@ -71,8 +71,8 @@ def dashboard():
                 conteudo = f.read()
                 st.text_area("📖 Histórico de Missões", value=conteudo, height=300)
 
-    elif aba == "📅 Agenda":
-        st.subheader("📅 Planejamento do Dia")
+    elif aba == "🗕 Agenda":
+        st.subheader("🗕 Planejamento do Dia")
         tarefa = st.text_input("Nova tarefa:")
         if st.button("Adicionar Tarefa"):
             with open("agenda_streamlit.txt", "a") as f:
@@ -100,56 +100,50 @@ def dashboard():
         st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
         st.markdown("**Horário Ideal de Estudo:** Tarde")
 
-        st.markdown("#### 🧭 Cronograma Semanal por Matéria e Turno")
-        dias_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-        turnos = ["Manhã", "Tarde", "Noite"]
-        materias = ["Direito Penal", "CTB", "Legislação PMGO", "Direitos Humanos", "Português", "Redação"]
-        cronograma = {}
+        st.markdown("#### 🧽 Cronograma Tático (Automático)")
+        if st.button("Carregar Modelo da Semana"):
+            with open("cronograma_streamlit.txt", "w") as f:
+                f.write("""
+Segunda-feira
+Manhã: Penal: Crimes contra a Pessoa | CTB: Conceitos
+Tarde: Legislação PMGO: Estrutura | Direitos Humanos: Princípios
+Noite: Redação: Estrutura | Português: Pontuação
 
-        for dia in dias_semana:
-            with st.expander(f"📅 {dia}"):
-                cronograma[dia] = {}
-                for turno in turnos:
-                    cronograma[dia][turno] = {}
-                    st.markdown(f"**{turno}:**")
-                    for materia in materias:
-                        assunto = st.text_input(f"{materia}", key=f"{dia}_{turno}_{materia}")
-                        cronograma[dia][turno][materia] = assunto
+Terça-feira
+Manhã: Penal: Patrimônio | CTB: Penalidades
+Tarde: Legislação PMGO: Hierarquia | DH: Declaração Universal
+Noite: Redação: Tema Livre | Português: Pronomes
 
-        st.markdown("#### 📆 Resumo do Cronograma da Semana")
-        for dia in dias_semana:
-            st.markdown(f"**{dia}**:")
-            for turno in turnos:
-                materias_assuntos = [f"{materia}: {cronograma[dia][turno][materia]}" for materia in materias if cronograma[dia][turno][materia]]
-                if materias_assuntos:
-                    st.markdown(f"- {turno}: " + ", ".join(materias_assuntos))
+Quarta-feira
+Manhã: Penal: Crimes em Espécie | CTB: Sinalização
+Tarde: Legislação PMGO: Estatuto | DH: Intervenção Policial
+Noite: Simulado Geral | Flashcards
 
-        st.markdown("#### 📌 Metas da Semana")
-        metas = [
-            "Finalizar aula de Legislação",
-            "Revisar Penal com flashcards",
-            "Fazer 30 questões de CTB",
-            "Simulado Completo",
-            "Resumo de Direitos Humanos"
-        ]
-        for meta in metas:
-            st.checkbox(meta)
+Quinta-feira
+Manhã: Penal: Parte Geral | CTB: Infrações
+Tarde: Legislação PMGO: Conduta | DH: Casos Práticos
+Noite: Redação: Argumentação | Português: Concordância
 
-        st.markdown("#### 🧠 Técnicas de Estudo")
-        st.markdown("- Pomodoro (25/5)\n- Mapas Mentais\n- Flashcards (Anki)\n- Revisão Espaçada\n- Questões diárias (QConcursos / Gran)")
+Sexta-feira
+Manhã: Penal: Revisão Geral | CTB: Questões
+Tarde: Legislação: Revisão | DH: Questões
+Noite: Flashcards | Redação: Reescrita
 
-        st.markdown("#### 🔁 Revisão Programada")
-        st.markdown("- Dia 1 após o estudo\n- Dia 7\n- Dia 30")
+Sábado
+Manhã: Questões QConcursos | Mapas Mentais
+Tarde: Revisão Geral | Flashcards
+Noite: Vídeos Gran Cursos | Avaliação Semanal
 
-        st.markdown("#### 🔗 Plataformas Utilizadas")
-        st.markdown("- [Gran Cursos](https://www.grancursosonline.com.br)\n- [QConcursos](https://www.qconcursos.com)\n- [AnkiWeb](https://apps.ankiweb.net/)\n- [Google Drive](https://drive.google.com/drive/folders/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q)")
+Domingo
+Livre ou Reposição
+Autoavaliação | Planejamento
+""")
+            st.success("Modelo de cronograma carregado!")
 
-        st.markdown("#### 📂 Materiais e Revisões")
-        link_drive = "https://drive.google.com/drive/folders/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
-        st.markdown(f"📎 [Acessar pasta de materiais no Google Drive]({link_drive})")
-
-        st.markdown("#### 🧾 Simulados e Revisões Prontas")
-        st.markdown("- 📄 [Simulado PMGO - PDF](#)\n- 📄 [Resumo CTB - PDF](#)\n- 📄 [Flashcards Direitos Humanos - PDF](#)")
+        if os.path.exists("cronograma_streamlit.txt"):
+            with open("cronograma_streamlit.txt", "r") as f:
+                conteudo = f.read()
+                st.text_area("📚 Cronograma da Semana (Editável)", value=conteudo, height=400)
 
     elif aba == "💰 Investimentos":
         st.subheader("💰 Controle de Investimentos")
@@ -159,7 +153,7 @@ def dashboard():
 
         st.markdown("#### 📊 Planilha de Controle:")
         link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
-        st.markdown(f"📎 [Abrir planilha de investimentos]({link_planilha})")
+        st.markdown(f"📌 [Abrir planilha de investimentos]({link_planilha})")
 
 # ----------------------------
 # Execução
