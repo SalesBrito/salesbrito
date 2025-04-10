@@ -12,7 +12,7 @@ st.set_page_config(page_title="Painel @sales_brito", layout="wide")
 st.markdown("""
     <style>
     .main {
-        background-color: #f0f2f6;
+        background-color: #f4f6f9;
         color: #1a1a1a;
         font-family: 'Segoe UI', sans-serif;
     }
@@ -21,7 +21,7 @@ st.markdown("""
         color: #000000;
     }
     .stButton>button {
-        background-color: #004d40;
+        background-color: #2e7d32;
         color: white;
         font-weight: bold;
         border-radius: 8px;
@@ -38,10 +38,10 @@ st.markdown("""
 # Autenticação Simples
 # ----------------------------
 def login():
-    st.title("🪖 Painel Tático @sales_brito")
+    st.title("🪖 Painel Militar @sales_brito")
     st.subheader("🔒 Acesso Restrito")
     st.markdown(
-        "> "Seja mais forte do que sua melhor desculpa. Hora de agir como um guerreiro!"
+        "> A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!'"
     )
     user = st.text_input("Usuário")
     passwd = st.text_input("Senha", type="password")
@@ -50,33 +50,33 @@ def login():
             st.session_state['logado'] = True
             st.success("Acesso liberado, soldado!")
         else:
-            st.error("Credenciais incorretas. Missão abortada.")
+            st.error("Credenciais incorretas. Tente novamente.")
 
 # ----------------------------
 # Painel Principal
 # ----------------------------
 def dashboard():
-    st.sidebar.title("🎖 Missões")
-    aba = st.sidebar.radio("Escolha sua operação:", ["📓 Anotações", "🗕 Agenda", "📁 Uploads", "📚 Estudos (PMGO)", "💰 Investimentos"])
-    st.title(f"🎯 Painel do Operacional: @sales_brito")
+    st.sidebar.title("📋 Menu Principal")
+    aba = st.sidebar.radio("Escolha uma seção:", ["📓 Anotações", "🗕 Agenda", "📁 Uploads", "📚 Estudos (PMGO)", "💰 Investimentos"])
+    st.title(f"📌 Painel de Comando: @sales_brito")
 
     if aba == "📓 Anotações":
-        st.subheader("📓 Diário de Missões")
-        anotacao = st.text_area("Registrar nova missão:")
-        if st.button("Salvar Missão"):
+        st.subheader("📓 Diário de Estudos")
+        anotacao = st.text_area("Digite sua anotação:")
+        if st.button("Salvar Anotação"):
             with open("anotacoes_streamlit.txt", "a") as f:
                 f.write(f"[{datetime.now().strftime('%d/%m/%Y %H:%M')}] {anotacao}\n")
-            st.success("Missão registrada com sucesso!")
+            st.success("Anotação salva!")
 
         if os.path.exists("anotacoes_streamlit.txt"):
             with open("anotacoes_streamlit.txt", "r") as f:
                 conteudo = f.read()
-                st.text_area("📖 Histórico de Missões", value=conteudo, height=300)
+                st.text_area("📖 Histórico", value=conteudo, height=300)
 
     elif aba == "🗕 Agenda":
-        st.subheader("🗕 Planejamento do Dia")
-        tarefa = st.text_input("Nova tarefa:")
-        if st.button("Adicionar Tarefa"):
+        st.subheader("📆 Planejamento Diário")
+        tarefa = st.text_input("Adicionar tarefa:")
+        if st.button("Adicionar"):
             with open("agenda_streamlit.txt", "a") as f:
                 f.write(f"[ ] {tarefa}\n")
             st.success("Tarefa adicionada!")
@@ -84,13 +84,13 @@ def dashboard():
         if os.path.exists("agenda_streamlit.txt"):
             with open("agenda_streamlit.txt", "r") as f:
                 tarefas = f.readlines()
-            st.write("### 📋 Lista de Tarefas")
+            st.write("### ✅ Tarefas do Dia")
             for t in tarefas:
                 st.markdown(f"- {t.strip()}")
 
     elif aba == "📁 Uploads":
-        st.subheader("📁 Upload de Arquivos")
-        uploaded = st.file_uploader("Envie seus arquivos táticos:")
+        st.subheader("📁 Enviar Arquivos")
+        uploaded = st.file_uploader("Envie seus arquivos:")
         if uploaded:
             os.makedirs("uploads", exist_ok=True)
             with open(f"uploads/{uploaded.name}", "wb") as f:
@@ -98,12 +98,11 @@ def dashboard():
             st.success(f"Arquivo '{uploaded.name}' salvo com sucesso!")
 
     elif aba == "📚 Estudos (PMGO)":
-        st.subheader("📚 Missão PMGO: Estudo Diário")
-        st.markdown("**Frase Motivacional:** A melhor frase que vocês vão ouvir: 'Você foi aprovado na PMGO!' 🏆")
+        st.subheader("📚 Planejamento PMGO")
         st.markdown("**Horário Ideal de Estudo:** Tarde")
 
-        st.markdown("#### 🧽 Cronograma Tático (Automático)")
-        if st.button("Carregar Modelo da Semana"):
+        st.markdown("#### 📅 Cronograma da Semana")
+        if st.button("Carregar Modelo Semanal"):
             with open("cronograma_streamlit.txt", "w") as f:
                 f.write("""
 Segunda-feira
@@ -140,12 +139,12 @@ Domingo
 Livre ou Reposição
 Autoavaliação | Planejamento
 """)
-            st.success("Modelo de cronograma carregado!")
+            st.success("Cronograma semanal carregado!")
 
         if os.path.exists("cronograma_streamlit.txt"):
             with open("cronograma_streamlit.txt", "r") as f:
                 conteudo = f.read()
-                st.text_area("📚 Cronograma da Semana (Editável)", value=conteudo, height=400)
+                st.text_area("🗂️ Cronograma Editável", value=conteudo, height=400)
 
     elif aba == "💰 Investimentos":
         st.subheader("💰 Controle de Investimentos")
@@ -153,7 +152,7 @@ Autoavaliação | Planejamento
         st.markdown("**Corretora:** Rico")
         st.markdown("**Plataforma:** App ou PC")
 
-        st.markdown("#### 📊 Planilha de Controle:")
+        st.markdown("#### 📊 Acesso à Planilha:")
         link_planilha = "https://docs.google.com/spreadsheets/d/1Zx-8DruS4RigITNLxiKwddiVD8Ne38YVKjXgXoqWP0Q"
         st.markdown(f"📌 [Abrir planilha de investimentos]({link_planilha})")
 
