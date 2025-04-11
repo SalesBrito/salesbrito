@@ -3,7 +3,7 @@ import os
 
 def welcome_message():
     os.system('cls' if os.name == 'nt' else 'clear')  # Limpa o terminal (Windows ou Linux)
-    
+
     mensagem = [
         "===========================================",
         "     BEM-VINDO AO QG DE MARCOS VINICIUS    ",
@@ -20,4 +20,5 @@ def welcome_message():
         print(linha)
         time.sleep(0.3)  # Efeito de digitação lenta
 
+# Chama a função
 welcome_message()
