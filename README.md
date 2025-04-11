@@ -49,8 +49,5 @@ Transformo conhecimentos em ferramentas práticas, com foco em **Python**, **pai
 
 ---
 
-### 📝 Como editar a frase:
-
-Vá até o bloco:
 
 
