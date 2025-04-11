@@ -12,7 +12,7 @@ Transformo conhecimentos em ferramentas práticas, com foco em **Python**, **pai
 
 | Projeto | Descrição |
 |--------|-----------|
-| 🔗 [Painel @sales_brito](https://salesbrito.vercel.app) | Sistema centralizado com estudos, investimentos, senhas e mais |
+| 🔗 [https://salesbrito.streamlit.app/) | Sistema centralizado com estudos, investimentos, senhas e mais |
 | 🎮 [joguinhosales.netlify.app](https://joguinhosales.netlify.app) | Terminal fake estilo hacker para praticar comandos |
 | 🧠 Planejamento PMGO | Ferramentas e rotinas de estudos para o concurso da PMGO |
 | 💻 Scripts em Python | Automação, organização de arquivos, estudos, etc. |
